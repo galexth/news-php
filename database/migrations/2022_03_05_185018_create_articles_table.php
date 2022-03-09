@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('source_id')->unsigned();
             $table->string('query_used', 55)->index();
-            $table->string('author', 55)->nullable();
+            $table->text('author')->nullable();
             $table->string('title');
             $table->string('url')->unique();
             $table->string('image_url')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('content');
             $table->timestamp('published_at');
             $table->timestamps();
