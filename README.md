@@ -1,24 +1,56 @@
-# Lumen PHP Framework
+# News Api
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+```shell
+composer install
+```
+```shell
+cp .env.example .env
+```
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+```shell
+php artisan db:migrate
+```
 
-## Official Documentation
+optional:
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+```shell
+php artisan db:seed
+```
 
-## Contributing
+## Console commands
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To run the server:
 
-## Security Vulnerabilities
+```shell
+php -S localhost:8000 -t public
+```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+To fetch last articles:
 
-## License
+```shell
+php artisan articles:fetch {q} {--page=1} {--size=100}
+```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+To run parser for all queries:
+
+```shell
+php artisan schedule:run
+```
+
+## Api
+
+```http request
+GET api/articles
+        ?page=1
+        &per_page=20
+        &date=2022-03-08
+        &source=somesource
+        &query_used=bitcoin
+        &q=fulltextsearch
+```
+where:
+
+ - query_used - is a query used during parse
+ - date - is published date
+ - q - is a fulltext search against title and content
+

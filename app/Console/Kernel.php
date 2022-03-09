@@ -26,11 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new ParseArticles('Bitcoin'))->everyMinute();
-        $schedule->job(new ParseArticles('Litecoin'))->everyMinute();
-        $schedule->job(new ParseArticles('Ripple'))->everyMinute();
-        $schedule->job(new ParseArticles('Dash'))->everyMinute();
-        $schedule->job(new ParseArticles('Ethereum'))->everyMinute();
+        $schedule->job(new ParseArticles('bitcoin'))->everyMinute();
+        $schedule->job(new ParseArticles('litecoin'))->everyMinute();
+        $schedule->job(new ParseArticles('ripple'))->everyMinute();
+        $schedule->job(new ParseArticles('dash'))->everyMinute();
+        $schedule->job(new ParseArticles('ethereum'))->everyMinute();
 
     }
 }

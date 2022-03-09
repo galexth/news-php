@@ -19,7 +19,7 @@ class ArticleController extends Controller
         $page = $request->input('page') ?: 1;
         $perPage = $request->input('per_page') ?: 20;
 
-        $criteria = array_filter($request->only(['date', 'source', 'title']));
+        $criteria = array_filter($request->only(['date', 'source', 'query_used', 'q']));
 
         $paginator = $repo->getAll($criteria, ['source'], $page, $perPage);
 

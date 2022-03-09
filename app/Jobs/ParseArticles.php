@@ -7,11 +7,11 @@ use App\Repositories\ArticleRepositoryInterface;
 
 class ParseArticles extends Job
 {
-    private string $topic;
+    private string $query;
 
-    public function __construct(string $topic)
+    public function __construct(string $query)
     {
-        $this->topic = $topic;
+        $this->query = $query;
     }
 
     /**
@@ -21,8 +21,10 @@ class ParseArticles extends Job
      */
     public function handle(NewsApiInterface $parser, ArticleRepositoryInterface $repo)
     {
-        $res = $parser->fetchAll($this->topic, 1, 1);
+        $res = $parser->fetchAll($this->query, 1, 1);
 
-        $repo->firstOrCreate($res->getCollection()->first());
+        $data = array_merge($res->getCollection()->first(), ['query_used' => $this->query]);
+
+        $repo->firstOrCreate($data);
     }
 }

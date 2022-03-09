@@ -29,12 +29,14 @@ class FetchArticles extends Command
      */
     public function handle(NewsApiInterface $parser, ArticleRepositoryInterface $repo)
     {
-        $q = $this->argument('q');
+        $q = strtolower($this->argument('q'));
         $page = (int) $this->option('page');
         $size = (int) $this->option('size');
 
         $res = $parser->fetchAll($q, $page, $size);
 
-        $res->getCollection()->each(fn($item) => $repo->firstOrCreate($item));
+        $res->getCollection()->each(function ($item) use ($repo, $q) {
+            $repo->firstOrCreate(array_merge($item, ['query_used' => $q]));
+        });
     }
 }

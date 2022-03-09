@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('source_id')->unsigned();
+            $table->string('query_used', 55)->index();
             $table->string('author', 55)->nullable();
             $table->string('title');
             $table->string('url')->unique();

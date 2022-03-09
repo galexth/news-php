@@ -26,6 +26,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence,
             'url' => $this->faker->url . rand(),
             'image_url' => $this->faker->imageUrl,
+            'query_used' => $this->faker->randomElement(['bitcoin', 'ripple', 'litecoin']),
             'description' => $this->faker->text(200),
             'content' => $this->faker->text(500),
             'published_at' => $this->faker->dateTimeBetween('-1 month'),
