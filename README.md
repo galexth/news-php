@@ -8,7 +8,7 @@ cp .env.example .env
 ```
 
 ```shell
-php artisan db:migrate
+php artisan migrate
 ```
 
 optional:
